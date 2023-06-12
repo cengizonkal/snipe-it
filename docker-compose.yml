@@ -10,6 +10,8 @@ services:
     - "8000:80"
     volumes:
     - ./logs:/var/www/html/storage/logs
+    # link application folder
+    - ./app:/var/www/html/app
     depends_on:
     - mariadb
     - redis
@@ -27,7 +29,7 @@ services:
     networks:
     - snipeit-backend
     ports:
-      - "3306:3306"
+      - "3307:3306"
 
   redis:
     image: redis:6.2.5-buster
