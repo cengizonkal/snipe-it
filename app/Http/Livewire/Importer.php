@@ -48,6 +48,7 @@ class Importer extends Component
     public $components_fields;
     public $aliases_fields;
     public $accessory_checkin_fields;
+    public $accessory_checkout_fields;
 
     protected $rules = [
         'files.*.file_path' => 'required|string',
@@ -59,6 +60,7 @@ class Importer extends Component
         'activeFile.header_row' => 'array',
         'field_map' => 'array'
     ];
+
 
     public function generate_field_map()
     {
@@ -96,6 +98,9 @@ class Importer extends Component
                 break;
             case 'accessory_checkin':
                 $results = $this->accessory_checkin_fields;
+                break;
+            case 'accessory_checkout':
+                $results = $this->accessory_checkout_fields;
                 break;
             default:
                 $results = [];
@@ -177,6 +182,7 @@ class Importer extends Component
             'user' =>       trans('general.users'),
             'location' =>    trans('general.locations'),
             'accessory_checkin' =>  trans('general.accessories').' '. trans('general.checkin'),
+            'accessory_checkout' =>  trans('general.accessories').' '. trans('general.checkout'),
 
         ];
 
@@ -338,6 +344,11 @@ class Importer extends Component
         ];
 
         $this->accessory_checkin_fields  = [
+            'username' => trans('admin/users/table.username'),
+            'item_name' => trans('general.item_name_var', ['item' => trans('general.accessory')]),
+            'notes' => trans('general.notes'),
+        ];
+        $this->accessory_checkout_fields  = [
             'username' => trans('admin/users/table.username'),
             'item_name' => trans('general.item_name_var', ['item' => trans('general.accessory')]),
             'notes' => trans('general.notes'),
