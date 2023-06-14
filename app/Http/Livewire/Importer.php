@@ -47,6 +47,7 @@ class Importer extends Component
     public $consumables_fields;
     public $components_fields;
     public $aliases_fields;
+    public $accessory_checkin_fields;
 
     protected $rules = [
         'files.*.file_path' => 'required|string',
@@ -92,6 +93,9 @@ class Importer extends Component
                 break;
             case 'location':
                 $results = $this->locations_fields;
+                break;
+            case 'accessory_checkin':
+                $results = $this->accessory_checkin_fields;
                 break;
             default:
                 $results = [];
@@ -172,6 +176,8 @@ class Importer extends Component
             'license' =>    trans('general.licenses'),
             'user' =>       trans('general.users'),
             'location' =>    trans('general.locations'),
+            'accessory_checkin' =>  trans('general.accessories').' '. trans('general.checkin'),
+
         ];
 
         /**
@@ -329,6 +335,12 @@ class Importer extends Component
             'manager_username' => trans('general.importer.manager_username'),
             'manager' => trans('general.importer.manager_full_name'),
             'parent_location' => trans('admin/locations/table.parent'),
+        ];
+
+        $this->accessory_checkin_fields  = [
+            'username' => trans('admin/users/table.username'),
+            'item_name' => trans('general.item_name_var', ['item' => trans('general.accessory')]),
+            'notes' => trans('general.notes'),
         ];
 
         // "real fieldnames" to a list of aliases for that field

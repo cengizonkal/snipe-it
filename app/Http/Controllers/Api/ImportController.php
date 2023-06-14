@@ -178,6 +178,7 @@ class ImportController extends Controller
             case 'asset':
                 $redirectTo = 'hardware.index';
                 break;
+            case 'accessory_checkin':
             case 'accessory':
                 $redirectTo = 'accessories.index';
                 break;
